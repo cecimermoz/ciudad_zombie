@@ -20,7 +20,19 @@ var Juego = {
   obstaculosCarretera: [
     /*Aca se van a agregar los obstaculos visibles. Tenemos una valla horizontal
     de ejemplo, pero podras agregar muchos mas. */
-    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1)
+    new Obstaculo('imagenes/valla_horizontal.png', 70, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 350, 80, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 800, 220, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 770, 220, 30, 30, 1),
+    new Obstaculo('imagenes/valla_horizontal.png', 100, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 170, 430, 30, 30, 1),
+    new Obstaculo('imagenes/valla_vertical.png', 400, 450, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 110, 120, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 840, 390, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 820, 130, 30, 30, 1),
+    new Obstaculo('imagenes/bache.png', 410, 210, 30, 30, 1),
+    new Obstaculo('imagenes/auto_verde_derecha.png', 320, 385, 60, 30, 2),
+
 
   ],
   /* Estos son los bordes con los que se puede chocar, por ejemplo, la vereda.
@@ -128,10 +140,9 @@ Juego.capturarMovimiento = function(tecla) {
 
   // Si se puede mover hacia esa posicion hay que hacer efectivo este movimiento
   if (this.chequearColisiones(movX + this.jugador.x, movY + this.jugador.y)) {
-    /* Aca tiene que estar la logica para mover al jugador invocando alguno
-    de sus metodos  */
-
-    /* COMPLETAR */
+    Jugador.mover(movX, movY);
+  } else {
+    Obstaculo.chocar();
   }
 };
 
@@ -141,12 +152,12 @@ Juego.dibujar = function() {
   //Se pinta la imagen de fondo segun el estado del juego
   this.dibujarFondo();
 
-
   /* Aca hay que agregar la logica para poder dibujar al jugador principal
   utilizando al dibujante y los metodos que nos brinda.
   "Dibujante dibuja al jugador" */
 
   /* Completar */
+  Dibujante.dibujarEntidad(Jugador);
 
   // Se recorren los obstaculos de la carretera pintandolos
   this.obstaculosCarretera.forEach(function(obstaculo) {
@@ -185,9 +196,6 @@ Juego.calcularAtaques = function() {
     if (this.intersecan(enemigo, this.jugador, this.jugador.x, this.jugador.y)) {
       /* Si el enemigo colisiona debe empezar su ataque
       COMPLETAR */
-    } else {
-      /* Sino, debe dejar de atacar
-      COMPLETAR */
     }
   }, this);
 };
@@ -200,9 +208,7 @@ Juego.chequearColisiones = function(x, y) {
   var puedeMoverse = true
   this.obstaculos().forEach(function(obstaculo) {
     if (this.intersecan(obstaculo, this.jugador, x, y)) {
-
-      /*COMPLETAR, obstaculo debe chocar al jugador*/
-
+      obstaculosCarretera.Obstaculo.chocar();
       puedeMoverse = false
     }
   }, this)
