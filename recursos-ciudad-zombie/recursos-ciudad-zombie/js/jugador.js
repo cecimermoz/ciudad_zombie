@@ -41,6 +41,6 @@ var Jugador = {
     Jugador.y = Jugador.y + moverY;    
   },
   perderVidas: function (n){
-    Jugador.vidas -= n;
+    this.vidas -= n;
   }
 }
