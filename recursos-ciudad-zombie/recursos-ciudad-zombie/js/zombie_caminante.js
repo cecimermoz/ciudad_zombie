@@ -38,6 +38,11 @@ ZombieCaminante.prototype.mover = function() {
   }
 }
 
+ZombieConductor.prototype.atacar = function (jugador){
+  jugador.perderVidas(2);
+}
+
+
 /* El ataque lo toma de su prototipo Enemigo que ya implementa un metodo atacar
 haciendole perder 1 vida al jugador. Si se quiere modificar el valor de ataque
 del zombie caminante habra que reimplementar este metodo desde el objeto ZombieCaminante
